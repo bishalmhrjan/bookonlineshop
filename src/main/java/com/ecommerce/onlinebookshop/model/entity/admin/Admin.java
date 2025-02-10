@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity.admin;
 
-import com.ecommerce.onlinebookshop.model.entity.book.AuditDetails;
+import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
+import com.ecommerce.onlinebookshop.model.entity.Security;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,7 +35,7 @@ public class Admin {
     private List<String> permissions;
 
     @Embedded
-    private AdminSecurity security;
+    private Security security;
 
     @Embedded
     private AuditDetails auditDetails;

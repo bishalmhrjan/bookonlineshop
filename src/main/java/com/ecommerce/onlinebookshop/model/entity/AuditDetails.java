@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.model.entity.book;
+package com.ecommerce.onlinebookshop.model.entity;
 
 import com.ecommerce.onlinebookshop.model.enums.BookType;
 import jakarta.persistence.*;

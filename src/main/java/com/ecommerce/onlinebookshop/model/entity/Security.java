@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.model.entity.admin;
+package com.ecommerce.onlinebookshop.model.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdminSecurity {
+public class Security {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
