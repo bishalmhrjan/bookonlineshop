@@ -25,6 +25,7 @@ public class Book {
     private double price;
     private int stockQuantity;
 
+    @Enumerated(EnumType.STRING)
     private BookType category;
     private LocalDateTime createdAt;
 
