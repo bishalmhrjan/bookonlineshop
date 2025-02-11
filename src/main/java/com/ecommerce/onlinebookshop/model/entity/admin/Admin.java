@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity.admin;
 
 import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
+import com.ecommerce.onlinebookshop.model.entity.Permission;
 import com.ecommerce.onlinebookshop.model.entity.Security;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "admin")
 public class Admin {
 
     @Id
@@ -31,8 +33,10 @@ public class Admin {
 
     private String role;
 
-    @ElementCollection
-    private List<String> permissions;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    private List<Permission> permissions;
+
 
     @Embedded
     private Security security;

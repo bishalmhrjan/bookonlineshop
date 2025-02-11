@@ -27,7 +27,6 @@ public class Book {
 
     @Enumerated(EnumType.STRING)
     private BookType category;
-    private LocalDateTime createdAt;
 
     @Embedded
     private BookMetaData bookMetaData;
@@ -39,7 +38,7 @@ public class Book {
     private AuditDetails auditDetails;
 
 
-    public Book(String title, double price, int stockQuantity, BookType category, LocalDateTime createdAt, BookMetaData bookMetaData, BookDescription description, AuditDetails auditDetails) throws BookInvalidException {
+    public Book(String title, double price, int stockQuantity, BookType category, BookMetaData bookMetaData, BookDescription description, AuditDetails auditDetails) throws BookInvalidException {
         if(title.equals("")||title.equals(null)){
             throw new BookInvalidException();
         }
@@ -54,7 +53,6 @@ public class Book {
         this.price = price;
         this.stockQuantity = stockQuantity;
         this.category = category;
-        this.createdAt = createdAt;
         this.bookMetaData = bookMetaData;
         this.description = description;
         this.auditDetails = auditDetails;
