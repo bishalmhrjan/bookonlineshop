@@ -23,7 +23,7 @@ public class Cart {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CartItem> bookId; // after success buy, cart gets empty
     private double totalPrice;
     @OneToOne

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data //generates Getters, setters, hascode and toString
 @Builder
 @AllArgsConstructor
@@ -37,6 +39,13 @@ public class Order {
             @AttributeOverride(name = "cityName", column = @Column(name = "billing_city"))
     })
     private Adress billingAddress;
+
+    @OneToMany
+    private List<Cart> historyCart;
+
+
+   @ManyToOne
+   private Customer customer;
 
 
 

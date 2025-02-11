@@ -44,8 +44,7 @@ public class Customer  {
     })
     private Adress billingAddress;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Order> orders;
 
     @OneToOne
