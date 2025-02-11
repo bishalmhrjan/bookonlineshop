@@ -7,27 +7,27 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-
-@Data //generates Getters, setters, hascode and toString
-@Builder
 @Entity
+@Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-
-@Table(name = "cart")
-public class Cart {
+@Table(name="cart_item")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany
-    private List<CartItem> bookId; // after success buy, cart gets empty
-    private double totalPrice;
-    @OneToOne
-    private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name="cart_id")
+    private Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id")
+    private Book book;
+
+    private int quantity;
+    private double priceAtPurchase;
 
 }

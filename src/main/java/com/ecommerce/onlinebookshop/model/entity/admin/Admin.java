@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity.admin;
 
 import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
+import com.ecommerce.onlinebookshop.model.entity.Customer;
 import com.ecommerce.onlinebookshop.model.entity.Permission;
 import com.ecommerce.onlinebookshop.model.entity.Security;
 import jakarta.persistence.*;
@@ -8,28 +9,19 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
 @Entity
 @Data //generates Getters, setters, hascode and toString
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "admin")
-public class Admin {
+public class Admin extends Customer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String username;
-
-    private String email;
-
-    private String firstName;
-
-    private String lastName;
 
     private String role;
 
