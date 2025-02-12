@@ -16,12 +16,12 @@ public class AdminService {
     public AdminService(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
-    private List<Customer> getAllAdmin(){
+    public List<Admin> getAllAdmin(){
         return adminRepository.findAll();
 
     }
 
-    public Optional<Customer> getAdminById(Long id){
+    public Optional<Admin> getAdminById(Long id){
         return  adminRepository.findById(id);
     }
 
