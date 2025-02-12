@@ -2,6 +2,8 @@ package com.ecommerce.onlinebookshop.controller;
 
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
 import com.ecommerce.onlinebookshop.service.BookService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,22 +21,27 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getAllbooks(){
-        return bookService.getAllBooks();
+    public ResponseEntity<List<Book>> getAllbooks(){
+        List<Book> books= bookService.getAllBooks();
+        return  ResponseEntity.ok(books);
     }
 
     @GetMapping("/{id}")
-    public Optional<Book> getbookById(@PathVariable Long id){
-        return bookService.getBookById(id);
+    public ResponseEntity<Book> getbookById(@PathVariable Long id){
+        Optional<Book> book= bookService.getBookById(id);
+        return book.map(ResponseEntity::ok)
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Book createbook(@RequestBody Book book){
-        return bookService.addBook(book);
+    public ResponseEntity<Book> createbook(@RequestBody Book book){
+        Book toBeSaved= bookService.addBook(book);
+       return ResponseEntity.status(HttpStatus.CREATED).body(toBeSaved);
     }
 
     @DeleteMapping
-    public void deletebook(@PathVariable Long id){
+    public ResponseEntity<Void> deletebook(@PathVariable Long id){
         bookService.deleteBookById(id);
+        return ResponseEntity.noContent().build();
     }
 }
