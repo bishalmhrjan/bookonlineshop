@@ -28,7 +28,7 @@ public class ReviewAndRatingService {
         return reviewAndRatingRepository.save(reviewAndRating);
     }
 
-    public void deleteReviewAndRate(Long id){
+    public void deleteReviewAndRateById(Long id){
         reviewAndRatingRepository.deleteById(id);
     }
 }

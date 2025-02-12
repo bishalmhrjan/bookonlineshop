@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/cartItems")
 public class CartItemController {
     private final CartItemService cartItemService;
 

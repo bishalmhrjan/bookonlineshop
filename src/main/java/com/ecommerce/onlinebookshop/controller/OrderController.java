@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping
+@RequestMapping("/orders")
 public class OrderController {
     private final OrderService orderService;
 
