@@ -3,6 +3,8 @@ package com.ecommerce.onlinebookshop.controller;
 import com.ecommerce.onlinebookshop.model.entity.CartItem;
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import com.ecommerce.onlinebookshop.service.CustomerService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,22 +21,27 @@ public class CustomerController {
     }
 
     @GetMapping
-    public List<Customer> getAllCartItems(){
-        return customerService.getAllCustomers();
+    public ResponseEntity<List<Customer>> getAllCartItems(){
+        List<Customer> customers= customerService.getAllCustomers();
+        return ResponseEntity.ok(customers);
     }
 
     @GetMapping("/{id}")
-    public Optional<Customer> getCartItemById(@PathVariable Long id){
-        return customerService.getCustomerById(id);
+    public ResponseEntity<Customer> getCartItemById(@PathVariable Long id){
+        Optional<Customer> cartItem= customerService.getCustomerById(id);
+        return cartItem.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Customer createCartItem(@RequestBody Customer customer){
-        return customerService.addCustomer(customer);
+    public ResponseEntity<Customer> createCartItem(@RequestBody Customer customer){
+        Customer customerToSave= customerService.addCustomer(customer);
+    return     ResponseEntity.status(HttpStatus.CREATED).body(customerToSave);
     }
 
     @DeleteMapping
-    public void deleteCartItem(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
+
         customerService.deleteCustomer(id);
+        return ResponseEntity.noContent().build();
     }
 }
