@@ -3,6 +3,8 @@ package com.ecommerce.onlinebookshop.controller;
 import com.ecommerce.onlinebookshop.model.entity.ReviewAndRating;
 import com.ecommerce.onlinebookshop.service.ReviewAndRatingService;
 import com.ecommerce.onlinebookshop.service.ReviewAndRatingService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,22 +22,27 @@ public class ReviewAndRatingController {
     }
 
     @GetMapping
-    public List<ReviewAndRating> getAllCartItems(){
-        return reviewAndRatingService.getAllReviewAndRates();
+    public ResponseEntity<List<ReviewAndRating>> getAllCartItems(){
+        List<ReviewAndRating> revs= reviewAndRatingService.getAllReviewAndRates();
+        return ResponseEntity.ok(revs);
     }
 
     @GetMapping("/{id}")
-    public Optional<ReviewAndRating> getCartItemById(@PathVariable Long id){
-        return reviewAndRatingService.getReviewAndRateById(id);
+    public ResponseEntity getCartItemById(@PathVariable Long id){
+        Optional<ReviewAndRating> reviewAndRatingToSave= reviewAndRatingService.getReviewAndRateById(id);
+        return reviewAndRatingToSave.map(ResponseEntity::ok)
+                .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ReviewAndRating createCartItem(@RequestBody ReviewAndRating ReviewAndRating){
-        return reviewAndRatingService.addReviewAndRating(ReviewAndRating);
+    public ResponseEntity<ReviewAndRating> createCartItem(@RequestBody ReviewAndRating ReviewAndRating){
+        ReviewAndRating reviewAndRatingToSave= reviewAndRatingService.addReviewAndRating(ReviewAndRating);
+    return  ResponseEntity.status(HttpStatus.CREATED).body(reviewAndRatingToSave);
     }
 
     @DeleteMapping
-    public void deleteCartItem(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
         reviewAndRatingService.deleteReviewAndRateById(id);
+        return ResponseEntity.noContent().build();
     }
 }
