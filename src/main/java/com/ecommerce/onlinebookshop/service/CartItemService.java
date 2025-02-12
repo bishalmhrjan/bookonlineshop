@@ -19,7 +19,7 @@ public class CartItemService {
         return cartItemrepository.findAll();
     }
 
-    public Optional<CartItem> getCartitemByCartItemId(Long id){
+    public Optional<CartItem> getCartitemById(Long id){
         return cartItemrepository.findById(id);
     }
 

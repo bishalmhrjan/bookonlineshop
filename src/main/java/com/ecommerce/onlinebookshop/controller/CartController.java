@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/carts")
 public class CartController {
     private final CartService cartService;
 
@@ -23,7 +21,7 @@ public class CartController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Cart> getCartById(@PathVariable  Long id){
+    public Optional<Cart> getCartById(@PathVariable Long id){
         return cartService.getCartById(id);
     }
 
