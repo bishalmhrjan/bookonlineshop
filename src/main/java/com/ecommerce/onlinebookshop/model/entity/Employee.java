@@ -16,8 +16,11 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Table(name = "employee")
-public class Employee extends Customer{
-
+public class Employee extends Person{
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     private String role;
 
