@@ -1,9 +1,6 @@
 package com.ecommerce.onlinebookshop.model.entity.admin;
 
-import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
-import com.ecommerce.onlinebookshop.model.entity.Customer;
-import com.ecommerce.onlinebookshop.model.entity.Permission;
-import com.ecommerce.onlinebookshop.model.entity.Security;
+import com.ecommerce.onlinebookshop.model.entity.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,11 +16,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "admin")
-public class Admin extends Customer {
+public class Admin extends Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
 
-
-
-    private String role;
+    private String role; //???
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)

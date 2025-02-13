@@ -1,11 +1,13 @@
 package com.ecommerce.onlinebookshop.service;
 
+import com.ecommerce.onlinebookshop.dto.CustomerDto;
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import com.ecommerce.onlinebookshop.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {
@@ -16,7 +18,11 @@ public class CustomerService {
     }
 
     public List<Customer> getAllCustomers(){
-        return customerRepository.findAll();
+        return null;
+                /*customerRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList()); */
     }
 
     public Optional<Customer> getCustomerById(Long id){

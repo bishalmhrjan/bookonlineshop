@@ -17,32 +17,13 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "customer")
 
-public class Customer  {
+public class Customer extends Person  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String email;
-    private Security security;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "streetName", column = @Column(name = "shipping_street")),
-            @AttributeOverride(name = "postalCode", column = @Column(name = "shipping_postal_code")),
-            @AttributeOverride(name = "cityName", column = @Column(name = "shipping_city"))
-    })
-    private Adress shippingAddress;
-
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "streetName", column = @Column(name = "billing_street")),
-            @AttributeOverride(name = "postalCode", column = @Column(name = "billing_postal_code")),
-            @AttributeOverride(name = "cityName", column = @Column(name = "billing_city"))
-    })
-    private Adress billingAddress;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Order> orders;
@@ -50,6 +31,7 @@ public class Customer  {
     @OneToOne
     private Cart cart;
     private AuditDetails auditDetails;
+    private Security security;
 
 
 
