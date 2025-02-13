@@ -33,6 +33,9 @@ public class Customer extends Person  {
     private AuditDetails auditDetails;
     private Security security;
 
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
+    private ReviewAndRating reviewAndRating;
+
 
 
 }

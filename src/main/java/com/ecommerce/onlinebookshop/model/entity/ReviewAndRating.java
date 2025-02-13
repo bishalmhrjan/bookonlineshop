@@ -24,5 +24,9 @@ public class ReviewAndRating {
     @ManyToOne
     private Book book;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
 
 }
