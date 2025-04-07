@@ -13,8 +13,8 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "customer")
+@DiscriminatorValue("CUSTOMER")
 
 public class Customer extends AuthCredentials {
     @Id
@@ -29,12 +29,12 @@ public class Customer extends AuthCredentials {
 
     @OneToOne
     private Cart cart;
-    private AuditDetails auditDetails;
-    private Security security;
+     private Security security;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ReviewAndRating> reviewAndRating;
 
-
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    private AuditDetails auditDetails;
 
 }

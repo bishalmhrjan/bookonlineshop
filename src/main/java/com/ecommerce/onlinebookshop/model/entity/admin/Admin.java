@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "admin")
+@DiscriminatorValue("ADMIN")
 public class Admin extends AuthCredentials {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

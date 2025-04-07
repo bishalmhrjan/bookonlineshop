@@ -15,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @SuperBuilder
 @Table(name = "employee")
+@DiscriminatorValue("EMPLOYEE")
 public class Employee extends AuthCredentials {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +36,6 @@ public class Employee extends AuthCredentials {
 
     @Embedded
     private Security security;
-
-    @Embedded
+    @JoinColumn(name="user_id",referencedColumnName = "id")
     private AuditDetails auditDetails;
 }
