@@ -3,7 +3,6 @@ package com.ecommerce.onlinebookshop.model.entity.admin;
 import com.ecommerce.onlinebookshop.model.entity.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "admin")
-public class Admin extends Person {
+public class Admin extends AuthCredentials {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -32,6 +31,7 @@ public class Admin extends Person {
     @Embedded
     private Security security;
 
-    @Embedded
+    @JoinColumn(name="user_id",referencedColumnName = "id")
     private AuditDetails auditDetails;
+
 }

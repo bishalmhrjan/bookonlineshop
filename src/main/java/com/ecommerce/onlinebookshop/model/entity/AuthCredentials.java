@@ -8,14 +8,18 @@ import lombok.experimental.SuperBuilder;
 
 
 @Data
+@Entity
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Person {
+public class AuthCredentials {
 
     private String firstName;
     private String lastName;
     private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private  Long id;
 
     @AttributeOverrides({
             @AttributeOverride(name = "streetName", column = @Column(name = "shipping_street")),
