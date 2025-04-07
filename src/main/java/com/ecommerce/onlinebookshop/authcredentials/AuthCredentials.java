@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.authcredentials;
 
 import com.ecommerce.onlinebookshop.model.entity.Adress;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,5 +27,9 @@ public class AuthCredentials {
 
     @Column(nullable = false)
     private String email;
+
+    @OneToOne
+    @JoinColumn(name="user_id",referencedColumnName = "id")
+    private User user;
 
 }
