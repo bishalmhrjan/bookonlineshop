@@ -1,7 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity.book;
 
 
-import com.ecommerce.onlinebookshop.exceptiion.BookInvalidException;
+import com.ecommerce.onlinebookshop.exception.BookInvalidException;
 import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
 import com.ecommerce.onlinebookshop.model.enums.BookType;
 import jakarta.persistence.*;
@@ -9,8 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Entity
 @Data //generates Getters, setters, hascode and toString
