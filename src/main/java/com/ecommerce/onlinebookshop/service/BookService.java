@@ -1,7 +1,7 @@
 package com.ecommerce.onlinebookshop.service;
 
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
-import com.ecommerce.onlinebookshop.repository.BookRepository;
+import com.ecommerce.onlinebookshop.book.BookRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

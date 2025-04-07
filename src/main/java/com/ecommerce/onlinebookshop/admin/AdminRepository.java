@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.repository;
+package com.ecommerce.onlinebookshop.admin;
 
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import com.ecommerce.onlinebookshop.model.entity.admin.Admin;

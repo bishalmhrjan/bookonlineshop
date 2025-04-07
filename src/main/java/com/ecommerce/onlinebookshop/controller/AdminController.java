@@ -26,7 +26,7 @@ public class AdminController {
         return ResponseEntity.ok(admins);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/admins/{id}")
     public ResponseEntity<Admin> getAdminById(@PathVariable Long id){
         Optional<Admin> admin= adminService.getAdminById(id);
         return admin.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
@@ -39,7 +39,7 @@ public class AdminController {
          return ResponseEntity.status(HttpStatus.CREATED).body(savedAdmin);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admins/{id}")
     public ResponseEntity<Void> deleteAdmin(@PathVariable Long id){
         adminService.deleteAdmin(id);
         return ResponseEntity.noContent().build();

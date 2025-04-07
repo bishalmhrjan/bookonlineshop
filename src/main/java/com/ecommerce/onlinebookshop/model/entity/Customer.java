@@ -34,7 +34,7 @@ public class Customer extends Person  {
     private Security security;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
-    private ReviewAndRating reviewAndRating;
+    private List<ReviewAndRating> reviewAndRating;
 
 
 

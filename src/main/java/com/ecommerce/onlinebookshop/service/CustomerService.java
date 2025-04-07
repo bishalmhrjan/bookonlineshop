@@ -1,13 +1,11 @@
 package com.ecommerce.onlinebookshop.service;
 
-import com.ecommerce.onlinebookshop.dto.CustomerDto;
 import com.ecommerce.onlinebookshop.model.entity.Customer;
-import com.ecommerce.onlinebookshop.repository.CustomerRepository;
+import com.ecommerce.onlinebookshop.customer.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CustomerService {

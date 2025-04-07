@@ -1,7 +1,7 @@
 package com.ecommerce.onlinebookshop.service;
 
 import com.ecommerce.onlinebookshop.model.entity.Order;
-import com.ecommerce.onlinebookshop.repository.OrderRepository;
+import com.ecommerce.onlinebookshop.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

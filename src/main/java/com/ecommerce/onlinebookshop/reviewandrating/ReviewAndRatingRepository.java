@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.repository;
+package com.ecommerce.onlinebookshop.reviewandrating;
 
 import com.ecommerce.onlinebookshop.model.entity.ReviewAndRating;
 import org.springframework.data.jpa.repository.JpaRepository;

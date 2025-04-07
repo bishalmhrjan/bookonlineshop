@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.repository;
+package com.ecommerce.onlinebookshop.book;
 
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
 import org.springframework.data.jpa.repository.JpaRepository;

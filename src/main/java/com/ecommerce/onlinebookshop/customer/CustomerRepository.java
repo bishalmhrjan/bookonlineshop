@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.repository;
+package com.ecommerce.onlinebookshop.customer;
 
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.ecommerce.onlinebookshop.repository;
+package com.ecommerce.onlinebookshop.cartrepository;
 
 import com.ecommerce.onlinebookshop.model.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;

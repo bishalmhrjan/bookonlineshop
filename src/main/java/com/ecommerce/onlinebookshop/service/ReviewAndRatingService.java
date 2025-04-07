@@ -1,7 +1,7 @@
 package com.ecommerce.onlinebookshop.service;
 
 import com.ecommerce.onlinebookshop.model.entity.ReviewAndRating;
-import com.ecommerce.onlinebookshop.repository.ReviewAndRatingRepository;
+import com.ecommerce.onlinebookshop.reviewandrating.ReviewAndRatingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

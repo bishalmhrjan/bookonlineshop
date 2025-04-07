@@ -1,11 +1,9 @@
 package com.ecommerce.onlinebookshop.service;
 
-import com.ecommerce.onlinebookshop.model.entity.Customer;
 import com.ecommerce.onlinebookshop.model.entity.admin.Admin;
-import com.ecommerce.onlinebookshop.repository.AdminRepository;
+import com.ecommerce.onlinebookshop.admin.AdminRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
