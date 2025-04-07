@@ -1,5 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity;
 
+import com.ecommerce.onlinebookshop.authcredentials.AuthCredentials;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +18,7 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "employee")
 @DiscriminatorValue("EMPLOYEE")
-public class Employee extends AuthCredentials {
+public class Employee extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -34,8 +36,9 @@ public class Employee extends AuthCredentials {
     private List<Permission> permissions;
 
 
-    @Embedded
+
     private Security security;
-    @JoinColumn(name="user_id",referencedColumnName = "id")
+
+    @Embedded
     private AuditDetails auditDetails;
 }

@@ -1,6 +1,8 @@
 package com.ecommerce.onlinebookshop.model.entity.admin;
 
+import com.ecommerce.onlinebookshop.authcredentials.AuthCredentials;
 import com.ecommerce.onlinebookshop.model.entity.*;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,11 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "admin")
 @DiscriminatorValue("ADMIN")
-public class Admin extends AuthCredentials {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Admin extends User {
 
     private String role; //???
 
@@ -31,8 +29,5 @@ public class Admin extends AuthCredentials {
 
     @Embedded
     private Security security;
-
-    @JoinColumn(name="user_id",referencedColumnName = "id")
-    private AuditDetails auditDetails;
 
 }

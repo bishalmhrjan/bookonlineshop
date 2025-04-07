@@ -1,5 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity;
 
+import com.ecommerce.onlinebookshop.authcredentials.AuthCredentials;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,11 +18,7 @@ import java.util.List;
 @Table(name = "customer")
 @DiscriminatorValue("CUSTOMER")
 
-public class Customer extends AuthCredentials {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class Customer extends User {
 
 
 
@@ -34,7 +32,7 @@ public class Customer extends AuthCredentials {
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ReviewAndRating> reviewAndRating;
 
-    @JoinColumn(name="user_id",referencedColumnName = "id")
+    @Embedded
     private AuditDetails auditDetails;
 
 }
