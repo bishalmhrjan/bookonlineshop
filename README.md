@@ -24,7 +24,9 @@ A simple blog web application built with **Spring MVC** and **Thymeleaf** where 
 
 1. **Clone the repository:**
    ```bash
-   [git clone https://github.com/bishalmhrjan/bookonlineshop.git]   cd spring-blog-app
+   git clone https://github.com/bishalmhrjan/bookonlineshop.git
+
+cd spring-blog-app
 
 2. ./mvnw spring-boot:run
 3.  http://localhost:8080
