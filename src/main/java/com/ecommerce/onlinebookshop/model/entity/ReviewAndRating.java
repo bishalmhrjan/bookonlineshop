@@ -24,6 +24,8 @@ public class ReviewAndRating {
     @ManyToOne
     private Book book;
 
+    private double rate;
+
     private String description;
 
     @ManyToOne
