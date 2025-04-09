@@ -27,10 +27,10 @@ public class Customer extends User {
 
     @OneToOne
     private Cart cart;
-     private Security security;
+    private Security security;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<ReviewAndRating> reviewAndRating;
+    private List<ReviewAndRating> reviewAndRatings;
 
     @Embedded
     private AuditDetails auditDetails;

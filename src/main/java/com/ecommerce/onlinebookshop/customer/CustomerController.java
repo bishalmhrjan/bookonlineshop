@@ -19,11 +19,13 @@ public class CustomerController {
         this.customerService = cartItemItemService;
     }
 
-    @GetMapping
+ /*   @GetMapping
     public ResponseEntity<List<Customer>> getAllCartItems(){
         List<Customer> customers= customerService.getAllCustomers();
         return ResponseEntity.ok(customers);
     }
+
+  */
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCartItemById(@PathVariable Long id){
