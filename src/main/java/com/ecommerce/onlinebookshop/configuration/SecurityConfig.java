@@ -22,8 +22,11 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
-                )
-                .build();
+                        .requestMatchers("/api/customers/delete/**").hasRole("ADMIN")
+                        .requestMatchers("/api/customers/**").hasAnyRole("ADMIN","EMPLOYEE")
+                        .anyRequest().authenticated()).build();
+
+
+
     }
 }
