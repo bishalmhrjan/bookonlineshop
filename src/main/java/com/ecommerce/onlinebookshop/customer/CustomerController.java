@@ -3,12 +3,14 @@ package com.ecommerce.onlinebookshop.customer;
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/api/customers")
+@PreAuthorize("hasAnyRole('ADMIN','EMPLOYEE')")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -19,13 +21,8 @@ public class CustomerController {
         this.customerService = cartItemItemService;
     }
 
- /*   @GetMapping
-    public ResponseEntity<List<Customer>> getAllCartItems(){
-        List<Customer> customers= customerService.getAllCustomers();
-        return ResponseEntity.ok(customers);
-    }
 
-  */
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCartItemById(@PathVariable Long id){
@@ -40,6 +37,7 @@ public class CustomerController {
     }
 
     @DeleteMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
 
         customerService.deleteCustomer(id);

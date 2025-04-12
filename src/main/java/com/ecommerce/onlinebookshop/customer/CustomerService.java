@@ -13,12 +13,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CustomerService     {
       private final CustomerRepository customerRepository;
       private CartRepository cartRepository;
@@ -28,13 +30,14 @@ public class CustomerService     {
     }
 
 
-
-
-
     public void deleteCustomer(Long id) {
-        customerRepository.deleteById(id);
-    }
+        if(id == null || id <= 0){
+            throw  new IllegalArgumentException("Invalid customer Id");
+        }
 
+        customerRepository.findById(id).orElseThrow(()->new RuntimeException("customer id not found "+id));
+
+    }
 
 
 
