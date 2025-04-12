@@ -34,7 +34,7 @@ public class AdminService {
         throw new RuntimeException("Invalid Id");
     }
 
-    public Admin addAmin(Admin admin){
+    @Transactional  public Admin addAmin(Admin admin){
       if(admin == null){
           throw  new IllegalArgumentException("Admin can not be null");
       }
@@ -45,7 +45,7 @@ public class AdminService {
         throw new IllegalArgumentException("Adming with email address "+admin.getEmail()+" already exists!");
     }
 
-    public void deleteAdmin(Long id){
+    @Transactional public void deleteAdmin(Long id){
         if(ConcreteValidChecker.validId(id) && adminRepository.getReferenceById(id) != null){
             adminRepository.deleteById(id);
         }

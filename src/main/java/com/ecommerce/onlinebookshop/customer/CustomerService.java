@@ -30,6 +30,7 @@ public class CustomerService     {
     }
 
 
+    @Transactional
     public void deleteCustomer(Long id) {
         if(id == null || id <= 0){
             throw  new IllegalArgumentException("Invalid customer Id");
@@ -50,6 +51,7 @@ public class CustomerService     {
     }
 
 
+    @Transactional
     public Customer addCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
