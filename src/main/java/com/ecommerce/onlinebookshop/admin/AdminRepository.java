@@ -15,16 +15,11 @@ import java.util.Optional;
 public interface AdminRepository extends  JpaRepository<Admin,Long>{
 
     @Query("SELECT a FROM Admin a WHERE a.email = :email")
-    List<Admin> findAdminByEmail(@Param("email") String email);
-
+    Optional<Admin> findAdminByEmail(@Param("email") String email);
     @Query("SELECT  a FROM Admin a WHERE a.firstName = :firstName")
     List<Admin> findAdminByFirstName(@Param("firstName") String firstName);
-
     @Query("SELECT a FROM Admin a WHERE a.lastName= :lastName")
     List<Admin> findAdminByLastName(@Param("lastName") String lastName);
-
-
-
     @Query("SELECT  a FROM Admin a WHERE  a.shippingAddress.cityName = :city")
     List<Admin> findAdminByCity(@Param("city") String city);
 
