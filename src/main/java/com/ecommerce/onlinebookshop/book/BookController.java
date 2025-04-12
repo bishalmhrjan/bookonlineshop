@@ -3,13 +3,15 @@ package com.ecommerce.onlinebookshop.book;
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/api/books")
+@PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
 public class BookController {
 
     private final BookService bookService;

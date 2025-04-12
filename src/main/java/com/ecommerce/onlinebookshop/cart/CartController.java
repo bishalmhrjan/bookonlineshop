@@ -1,13 +1,15 @@
 package com.ecommerce.onlinebookshop.cart;
 
 import com.ecommerce.onlinebookshop.model.entity.Cart;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/carts")
+@RequestMapping("/api/carts")
+@PreAuthorize("CUSTOMER")
 public class CartController {
     private final CartService cartService;
 
@@ -31,6 +33,7 @@ public class CartController {
         return cartService.addCart(cart);
     }
 
+    @PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
     @DeleteMapping
     public void deleteCart(@PathVariable Long id){
         cartService.deleteCart(id);

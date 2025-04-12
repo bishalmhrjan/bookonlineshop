@@ -3,13 +3,15 @@ package com.ecommerce.onlinebookshop.employee;
 import com.ecommerce.onlinebookshop.model.entity.Employee;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/api/employees")
+@PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
 public class EmployeeController {
     private final EmployeeService employeeService;
 
@@ -38,6 +40,7 @@ public class EmployeeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeToSave);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping
     public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
         employeeService.deleteEmployee(id);
