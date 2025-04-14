@@ -16,18 +16,19 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "admin")
 @DiscriminatorValue("ADMIN")
 public class Admin extends User {
 
-    private String role; //???
+
+    String filialeCity;
+    String department;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private List<Permission> permissions;
 
 
-    @Embedded
+ /*   @Embedded
     private Security security;
-
+*/
 }

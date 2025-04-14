@@ -10,7 +10,7 @@ public class CustomerMapper {
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
                 .email(customer.getEmail())
-                .billingAddress(customer.getBillingAddress())
+                .shippingAddress(customer.getShippingAddress())
                 .orders(customer.getOrders())
                 .cart(customer.getCart())
                 .build();
@@ -22,7 +22,7 @@ public class CustomerMapper {
                 .firstName(customerDto.getFirstName())
                 .lastName(customerDto.getLastName())
                 .email(customerDto.getEmail())
-                .billingAddress(customerDto.getBillingAddress())
+                .shippingAddress(customerDto.getShippingAddress())
                 .orders(customerDto.getOrders())
                 .cart(customerDto.getCart())
                 .build();

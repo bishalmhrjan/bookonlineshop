@@ -2,6 +2,7 @@ package com.ecommerce.onlinebookshop.order;
 
 import com.ecommerce.onlinebookshop.model.entity.Adress;
 import com.ecommerce.onlinebookshop.model.entity.Cart;
+import com.ecommerce.onlinebookshop.model.entity.CartItem;
 import com.ecommerce.onlinebookshop.model.entity.Customer;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,7 +26,7 @@ public class OrderDto {
 
     private Adress billingAddress;
 
-     private List<Cart> historyCart;
+     private List<CartItem> historyCart;
 
 
  }

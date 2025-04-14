@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.user;
 
 import com.ecommerce.onlinebookshop.model.entity.Adress;
+import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 @Data //generates Getters, setters, hascode and toString
 @SuperBuilder
 @NoArgsConstructor
+@Table(name = "users")
 @AllArgsConstructor
 public   class User {
     @Id
@@ -33,10 +35,6 @@ public   class User {
 
 
     @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "streetName", column = @Column(name = "billing_street")),
-            @AttributeOverride(name = "postalCode", column = @Column(name = "billing_postal_code")),
-            @AttributeOverride(name = "cityName", column = @Column(name = "billing_city"))
-    })
-    private Adress billingAddress;   // Other profile fields
+    private AuditDetails auditDetails;
+
 }

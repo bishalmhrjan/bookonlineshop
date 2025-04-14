@@ -27,7 +27,7 @@ public class Cart {
     private List<CartItem> bookId; // after success buy, cart gets empty
     private double totalPrice;
     @OneToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
-
 
 }

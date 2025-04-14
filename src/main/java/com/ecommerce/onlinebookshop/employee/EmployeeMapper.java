@@ -12,7 +12,6 @@ public class EmployeeMapper {
                 .lastName(employee.getLastName())
                 .email(employee.getEmail())
                 .shippingAddress(employee.getShippingAddress())
-                .billingAddress(employee.getBillingAddress())
                 .build();
         return employeeDto;
     }
@@ -23,7 +22,6 @@ public class EmployeeMapper {
                 .lastName(employeeDto.getLastName())
                 .email(employeeDto.getEmail())
                 .shippingAddress(employeeDto.getShippingAddress())
-                .billingAddress(employeeDto.getBillingAddress())
                 .build();
         return employee;
     }

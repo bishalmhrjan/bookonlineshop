@@ -16,29 +16,23 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@Table(name = "employee")
-@DiscriminatorValue("EMPLOYEE")
 public class Employee extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private String role;
 
-    private String department;
 
-    private Long managerId;  // Reference to manager
 
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private List<Permission> permissions;
 
+    String filialeCity;
+    String department;
 
+  //  private Security security;
 
-    private Security security;
-
-    @Embedded
-    private AuditDetails auditDetails;
 }

@@ -15,8 +15,6 @@ import java.util.List;
 @SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "customer")
-@DiscriminatorValue("CUSTOMER")
 
 public class Customer extends User {
 
@@ -25,14 +23,14 @@ public class Customer extends User {
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Order> orders;
 
-    @OneToOne
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
-    private Security security;
+   // private Security security;
 
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ReviewAndRating> reviewAndRatings;
 
-    @Embedded
-    private AuditDetails auditDetails;
+
+
 
 }

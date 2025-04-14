@@ -17,7 +17,6 @@ public class AdminMapper extends Customer {
                 .lastName(admin.getLastName())
                 .email(admin.getEmail())
                 .shippingAddress(admin.getShippingAddress())
-                .billingAddress(admin.getBillingAddress())
                 .build();
 
     return  adminDto;
@@ -33,7 +32,6 @@ public class AdminMapper extends Customer {
                 .lastName(adminDto.getLastName())
                 .email(adminDto.getEmail())
                 .shippingAddress(adminDto.getShippingAddress())
-                .billingAddress(adminDto.getBillingAddress())
                 .build();
         return admin;
     }
