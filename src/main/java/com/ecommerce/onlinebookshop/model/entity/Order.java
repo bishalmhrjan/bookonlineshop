@@ -1,13 +1,11 @@
 package com.ecommerce.onlinebookshop.model.entity;
 
-import com.ecommerce.onlinebookshop.model.entity.book.Book;
 import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.mapping.ToOne;
 
 import java.util.List;
 
@@ -29,7 +27,7 @@ public class Order {
 
 
     @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CartItem> bookId; // after success buy, cart gets empty
+    private List<CartItem> cartItems; // after success buy, cart gets empty
 
 
     @ManyToOne

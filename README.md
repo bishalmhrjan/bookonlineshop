@@ -49,8 +49,40 @@ spring.datasource.url=jdbc:mysql://localhost:3306/onlinebookstore?useSSL=false&s
     spring.jpa.show-sql=true               
     spring.jpa.properties.hibernate.format_sql=true   
 
-     Dialect for MySQL
+      Dialect for MySQL
      spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 
+🧱 Domain Model (Entity Design)
+The project follows a well-structured Entity Relationship Model (ERM) to represent users, carts, and orders within the system:
 
+User is the base entity for all roles in the system.
+
+Admin, Employee, and Customer all extend from User.
+
+Each User has a Cart which can contain multiple CartItems.
+
+A User can also place multiple Orders, and each Order contains CartItems that were selected at the time of checkout.
+
+This design allows clean role separation and clear ownership of carts and orders per user.
+
+🔐 Authentication & Authorization
+Security has been implemented using Spring Security, with role-based access control defined through SecurityFilterChain and PasswordEncoder.
+
+Access control rules:
+
+Customers can access:
+
+View endpoints like book browsing
+
+Their own order history
+
+Employees can:
+
+Update or delete orders/customers
+
+Admins have:
+
+Full access to all system management features
+
+This fine-grained access is achieved using method-level security annotations and Spring Expression Language (SpEL) to enforce dynamic rules based on the user’s role.
 
