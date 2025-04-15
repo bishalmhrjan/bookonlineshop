@@ -25,11 +25,11 @@ import java.util.List;
  List<Order> findOrderGreaterThanAmount(@Param("amount") double amount);
 
 
- @Query("SELECT   o FROM Order o WHERE o.shippingAddress.cityName = :city")
+ /*@Query("SELECT   o FROM Order o WHERE o.shippingAddress.cityName = :city")
  List<Order> findOrderByCity(@Param("city") String city);
 
  @Query("SELECT   o FROM Order o WHERE o.customer.firstName = :firstName")
  List<Order> findOrderByCustomerFirstName(@Param("firstName")  String firstName);
-
+*/
 
 }

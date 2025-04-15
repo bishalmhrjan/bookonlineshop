@@ -44,13 +44,13 @@ public class CartService {
         throw new IllegalArgumentException("id is invalid");
     }
 
-    public List<Cart> findCartLesserThantotalPrice(double totalPrice){
+   /* public List<Cart> findCartLesserThantotalPrice(double totalPrice){
         if(totalPrice<0){
             throw new IllegalArgumentException("total price can not be below zero!");
         }
        return cartRepository.findCartLesserThantotalPrice(totalPrice);
     }
-
+*/
     public List<Cart> findCartByCustomerFirstName(String firstName){
         if(ConcreteValidChecker.validString(firstName)){
             return cartRepository.findCartByCustomerFirstName(firstName);

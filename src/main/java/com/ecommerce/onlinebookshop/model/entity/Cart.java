@@ -1,6 +1,7 @@
 package com.ecommerce.onlinebookshop.model.entity;
 
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,11 +24,9 @@ public class Cart {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CartItem> bookId; // after success buy, cart gets empty
-    private double totalPrice;
-    @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+     @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
 }

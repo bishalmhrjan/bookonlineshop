@@ -1,11 +1,13 @@
 package com.ecommerce.onlinebookshop.model.entity;
 
 import com.ecommerce.onlinebookshop.model.entity.book.Book;
+import com.ecommerce.onlinebookshop.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.mapping.ToOne;
 
 import java.util.List;
 
@@ -23,35 +25,22 @@ public class Order {
 
     private double amount;
 
-    @Embedded
-
-    @AttributeOverrides({
-            @AttributeOverride(name = "streetName", column = @Column(name = "shipping_street")),
-            @AttributeOverride(name = "postalCode", column = @Column(name = "shipping_postal_code")),
-            @AttributeOverride(name = "cityName", column = @Column(name = "shipping_city"))
-    })
-    private Adress shippingAddress;
 
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "streetName", column = @Column(name = "billing_street")),
-            @AttributeOverride(name = "postalCode", column = @Column(name = "billing_postal_code")),
-            @AttributeOverride(name = "cityName", column = @Column(name = "billing_city"))
-    })
-    private Adress billingAddress;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> historyCart;
-
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<CartItem> bookId; // after success buy, cart gets empty
 
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     /**
-     * One Cart can
+     * One order has one to one relation to cart,
+     * one cart can have multiple cartitem. rn only books.
+     *
      */
 
 

@@ -10,10 +10,7 @@ public class OrderMapper {
         OrderDto orderDto = OrderDto.builder()
                 .id(order.getId())
                 .amount(order.getAmount())
-                .shippingAddress(order.getShippingAddress())
-                .billingAddress(order.getBillingAddress())
-                .historyCart(order.getHistoryCart())
-                .build();
+                 .build();
         return orderDto;
     }
 
@@ -21,10 +18,7 @@ public class OrderMapper {
         Order order = Order.builder()
                 .id(orderDto.getId())
                 .amount(orderDto.getAmount())
-                .shippingAddress(orderDto.getShippingAddress())
-                .billingAddress(orderDto.getBillingAddress())
-                .historyCart(orderDto.getHistoryCart())
-                .build();
+                 .build();
         return order;
     }
 }

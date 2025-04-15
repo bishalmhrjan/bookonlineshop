@@ -27,12 +27,11 @@ public class CartItem {
     @JoinColumn(name = "book_id")
     private Book book;
 
+
     @ManyToOne
+    @JoinColumn(name = "order_id")
     private Order order;
 
-
-
     private int quantity;
-    private double priceAtPurchase;
 
 }

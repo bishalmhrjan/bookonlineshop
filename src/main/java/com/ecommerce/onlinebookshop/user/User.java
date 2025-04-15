@@ -2,11 +2,15 @@ package com.ecommerce.onlinebookshop.user;
 
 import com.ecommerce.onlinebookshop.model.entity.Adress;
 import com.ecommerce.onlinebookshop.model.entity.AuditDetails;
+import com.ecommerce.onlinebookshop.model.entity.Cart;
+import com.ecommerce.onlinebookshop.model.entity.Order;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -36,5 +40,9 @@ public   class User {
 
     @Embedded
     private AuditDetails auditDetails;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Cart cart;
 
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Order> orders;
 }

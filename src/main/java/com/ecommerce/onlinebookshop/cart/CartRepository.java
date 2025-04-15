@@ -16,11 +16,11 @@ import java.util.List;
 
 @Repository
 public interface CartRepository extends JpaRepository<Cart,Long> {
-    @Query("SELECT c FROM Cart c WHERE c.totalPrice <= :totalPrice")
+   /* @Query("SELECT c FROM Cart c WHERE c.totalPrice <= :totalPrice")
     List<Cart> findCartLesserThantotalPrice(@Param("totalPrice") double totalPrice);
 
-
-    @Query("SELECT  c FROM Cart c WHERE c.customer.firstName = :firstName")
+*/
+    @Query("SELECT  c FROM Cart c WHERE c.user.firstName = :firstName")
     List<Cart> findCartByCustomerFirstName(@Param("firstName")  String firstName);
 
 
