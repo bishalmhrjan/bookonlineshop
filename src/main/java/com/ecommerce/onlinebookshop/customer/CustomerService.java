@@ -36,19 +36,12 @@ public class CustomerService     {
             throw  new IllegalArgumentException("Invalid customer Id");
         }
 
-        customerRepository.findById(id).orElseThrow(()->new RuntimeException("customer id not found "+id));
+        customerRepository.deleteById(id);
 
     }
 
 
 
-    public Customer createCustomer(User  user){
-        // Customer customer = new Customer().builder();
-
-        // return customerRepository.save(customer );
-        return null;
-
-    }
 
 
     @Transactional
@@ -116,4 +109,7 @@ public class CustomerService     {
         return customerRepository.findCustomerByReview(bookName,rate);
     }
 
+    public List<Customer> getAllCustomer() {
+        return customerRepository.findAll();
+    }
 }

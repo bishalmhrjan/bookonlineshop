@@ -18,4 +18,6 @@ import lombok.NoArgsConstructor;
     private int postalCode;
     private String cityName;
 
+
+
 }
