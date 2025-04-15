@@ -29,5 +29,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     boolean existsByEmail(String email);  // Corrected method name
 
     @Query("SELECT u FROM User u WHERE TYPE(u) = :userType")
-    List<User> findAllByType(@Param("userType") Class<? extends User> userType);
+    List<Admin> findAllByType(@Param("userType") Class<? extends User> userType);
 }

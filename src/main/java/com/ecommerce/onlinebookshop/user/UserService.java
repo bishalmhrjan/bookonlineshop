@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,12 +17,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User getUserByEmail(String email){
-        return userRepository.findByEmail(email)
-                .orElseThrow(()-> new UsernameNotFoundException(email));
+    public Optional<User> getUserByEmail(String email){
+        return userRepository.findByEmail(email);
     }
 
-    public List<User> getAllAdmins(){
+    public List<Admin> getAllAdmins(){
         return userRepository.findAllByType(Admin.class);
     }
 
