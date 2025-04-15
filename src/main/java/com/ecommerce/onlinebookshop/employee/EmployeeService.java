@@ -2,6 +2,7 @@ package com.ecommerce.onlinebookshop.employee;
 
 import com.ecommerce.onlinebookshop.model.entity.Employee;
 import com.ecommerce.onlinebookshop.employee.EmployeeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,11 +25,17 @@ public class EmployeeService {
     }
 
     public Employee addEmployee(Employee employee){
+        if(employeeRepository.existsById(employee.getId())){
+            throw  new IllegalArgumentException("Employee existed in repo already");
+        }
         return employeeRepository.save(employee);
     }
 
 
-    public void deleteEmployee(Long id){
+    public void deleteEmployee(Long id) {
+        if (!employeeRepository.existsById(id)) {
+            throw new EntityNotFoundException("Employee not found");
+        }
         employeeRepository.deleteById(id);
     }
 
