@@ -58,13 +58,15 @@ spring.datasource.url=jdbc:mysql://localhost:3306/onlinebookstore?useSSL=false&s
   - Admin, Employee, and Customer all extend from User. 
   - Each User has a Cart which can contain multiple CartItems. 
   - A User can also place multiple Orders, and each Order contains CartItems that were selected at the time of checkout. 
-  - This design allows clean role separation and clear ownership of carts and orders per user.
+  
+  This design allows clean role separation and clear ownership of carts and orders per user.
 
   🔐 Authentication & Authorization 
  Security has been implemented using Spring Security, with role-based access control defined through SecurityFilterChain and PasswordEncoder.
-  Access control rules:
-  Customers can access: View endpoints like book browsing, Their own order history 
-  Employees can: update or delete orders/customers 
-  Admins have: Full access to all system management features 
-  This fine-grained access is achieved using method-level security annotations and Spring Expression Language (SpEL) to enforce dynamic rules based on the user’s role.
+  - Access control rules:
+     a) Customers can access: View endpoints like book browsing, Their own order history 
+     b) Employees can: update or delete orders/customers 
+     c) Admins have: Full access to all system management features 
+ 
+ This fine-grained access is achieved using method-level security annotations and Spring Expression Language (SpEL) to enforce dynamic rules based on the user’s role.
 
