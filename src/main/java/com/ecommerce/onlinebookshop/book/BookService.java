@@ -25,11 +25,12 @@ public class BookService {
      }
 
     @Transactional
-       public Book addBook(Book book){
+    public Book addBook(Book book){
         return bookRepository.save(book);
      }
 
-    @Transactional public void deleteBookById(Long id){
+    @Transactional
+    public void deleteBookById(Long id){
         bookRepository.deleteById(id);
      }
 }
