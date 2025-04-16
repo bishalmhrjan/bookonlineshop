@@ -73,7 +73,7 @@ class AdminControllerTest {
                 .build();
         when(adminService.getAdminById(1L)).thenReturn(Optional.of(admin));
 
-        mockMvc.perform(get(BASE_URL + "/admins/1"))
+        mockMvc.perform(get(BASE_URL + "/1"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1L));
 
@@ -84,12 +84,14 @@ class AdminControllerTest {
     void getAdminById_ShouldReturn404_whenNotFound() throws  Exception{
         when(adminService.getAdminById(1L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get(BASE_URL+"/admins/1"))
+        mockMvc.perform(get(BASE_URL+"/1"))
                 .andExpect(status().isNotFound());
 
     }
 
     @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+
     void createAdmin_shouldReturnCreatedAdmin() throws  Exception {
     Admin inputAdmin = Admin.builder()
             .firstName("admin1")
@@ -107,11 +109,12 @@ class AdminControllerTest {
         when(adminService.addAmin(any(Admin.class))).thenReturn(secondAdmin);
 
         mockMvc.perform(post("/api/admins")
+                        .with(csrf())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(inputAdmin)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("admin1"));
+                .andExpect(jsonPath("$.firstName").value("admin1"));
     }
 
     @Test
@@ -120,7 +123,7 @@ class AdminControllerTest {
     void deleteAdmin_ShouldReturnNoContent() throws  Exception{
 
         doNothing().when(adminService).deleteAdmin(1L);
-        mockMvc.perform(delete(BASE_URL+"/admins/1")
+        mockMvc.perform(delete(BASE_URL+"/1")
                         .with(csrf()))
                 .andExpect(status().isNoContent());
     verify(adminService,times(1)).deleteAdmin(1L);
