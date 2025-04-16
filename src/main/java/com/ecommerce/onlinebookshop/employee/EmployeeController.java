@@ -22,27 +22,27 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllCartItems(){
+    public ResponseEntity<List<Employee>> getEmployees(){
         List<Employee> employees= employeeService.getAllEmployees();
         return ResponseEntity.ok(employees);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Employee> getCartItemById(@PathVariable Long id){
+    public ResponseEntity<Employee> geEmployeeById(@PathVariable Long id){
         Optional<Employee> employee= employeeService.getEmployeeById(id);
       return   employee.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound()
         .build());
     }
 
     @PostMapping
-    public ResponseEntity<Employee> createCartItem(@RequestBody Employee employee){
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee){
         Employee employeeToSave = employeeService.addEmployee(employee);
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeToSave);
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping
-    public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id){
         employeeService.deleteEmployee(id);
         return ResponseEntity.noContent().build();
     }
