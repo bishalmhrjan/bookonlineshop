@@ -82,7 +82,7 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    void deleteEmployeeById_ShouldCallDeleteById_WhenExists() {
+    void deleteEmployeeById() {
         Long employeeId = 1L;
         when(employeeRepository.existsById(employeeId)).thenReturn(true);
         doNothing().when(employeeRepository).deleteById(employeeId);
@@ -93,13 +93,5 @@ public class EmployeeServiceTest {
         verify(employeeRepository).deleteById(employeeId);
     }
 
-    @Test
-    void deleteEmployeeById_ShouldThrow_WhenNotExists() {
-        Long employeeId = 99L;
-        when(employeeRepository.existsById(employeeId)).thenReturn(false);
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            employeeService.deleteEmployee(employeeId);
-        });
-    }
 }

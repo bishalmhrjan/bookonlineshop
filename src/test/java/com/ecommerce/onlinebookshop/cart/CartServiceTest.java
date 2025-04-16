@@ -113,6 +113,7 @@ public class CartServiceTest {
         result = cartService.getAllCarts();
 
         assertEquals(2,result.size());
+       // verify(cartRepository,times(1)).delete(cart3);
     }
 
     @Test

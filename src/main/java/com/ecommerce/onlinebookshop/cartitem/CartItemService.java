@@ -1,7 +1,6 @@
 package com.ecommerce.onlinebookshop.cartitem;
 
 import com.ecommerce.onlinebookshop.model.entity.CartItem;
-import com.ecommerce.onlinebookshop.cartitem.CartItemsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,9 +8,9 @@ import java.util.Optional;
 
 @Service
 public class CartItemService {
-    private final CartItemsRepository cartItemrepository;
+    private final CartItemRepository cartItemrepository;
 
-    public CartItemService(CartItemsRepository cartItemrepository) {
+    public CartItemService(CartItemRepository cartItemrepository) {
         this.cartItemrepository = cartItemrepository;
     }
 

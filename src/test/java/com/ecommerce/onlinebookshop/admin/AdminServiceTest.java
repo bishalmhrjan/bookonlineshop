@@ -39,6 +39,7 @@ public class AdminServiceTest {
 
         assertEquals(3,result.size());
 
+
     }
 
     @Test
@@ -88,33 +89,26 @@ public class AdminServiceTest {
     void deleteAdmin() {
 
         // yesko garna baki cha
-        Long idToDelete = 1L;
-        Admin adminToDelete = new Admin();
-        adminToDelete.setId(idToDelete);
-
         Admin admin1 = new Admin();
         Admin admin2 = new Admin();
+        Admin admin3 = new Admin();
 
-        List<Admin> admins = new ArrayList<>(List.of(admin1, admin2, adminToDelete));
+        Long id = 1L;
+        admin1.setId(id);
+        List<Admin> admins = new ArrayList<>();
+        admins.add(admin1);
+        admins.add(admin2);
+        admins.add(admin3);
 
-        // Mock repository behavior
-        when(adminRepository.findAll()).thenReturn(admins);
-        doNothing().when(adminRepository).delete(adminToDelete);
 
-        // Act - First get all to verify initial state
-        List<Admin> initialAdmins = adminService.getAllAdmin();
-        assertEquals(3, initialAdmins.size());
 
-        // Act - Delete operation
-        adminService.deleteAdmin(idToDelete);
 
-        // Act - Get all after deletion
-        when(adminRepository.findAll()).thenReturn(List.of(admin1, admin2));
-        List<Admin> remainingAdmins = adminService.getAllAdmin();
+        when(adminRepository.findById(id)).thenReturn(Optional.of(admin1));
+        Optional<Admin> deleteAdmin = adminService.getAdminById(id);
+        adminService.deleteAdmin(id);
 
-        // Assert
-        assertEquals(2, remainingAdmins.size());
-        verify(adminRepository, times(1)).delete(adminToDelete);
+        verify(adminRepository,times(1)).deleteById(id);
+
     }
 
     @Test
