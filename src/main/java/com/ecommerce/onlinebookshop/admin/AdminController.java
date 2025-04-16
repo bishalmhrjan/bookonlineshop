@@ -12,7 +12,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/admins")
 @PreAuthorize("ADMIN")
-public class AdminController {
+  class AdminController {
 
     private  final AdminService adminService;
 

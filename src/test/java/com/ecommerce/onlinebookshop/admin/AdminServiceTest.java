@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class AdminServiceTest {
+  class AdminServiceTest {
 
     @Mock
     private AdminRepository adminRepository;
