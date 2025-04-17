@@ -116,7 +116,7 @@ class BookControllerTest {
     void deletebook() throws Exception {
         doNothing().when(bookService).deleteBookById(1L);
         mockMvc.perform(delete(BASE_URL+"/1")
-                .with(csrf()))
+                        .with(csrf()))
                 .andExpect(status().isNoContent());
         verify(bookService,times(1)).deleteBookById(1L);
     }

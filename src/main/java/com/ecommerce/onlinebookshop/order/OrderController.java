@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
     private final OrderService orderService ;
 
@@ -20,29 +20,29 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Order>> getAllCartItems(){
+    public ResponseEntity<List<Order>> getAllOrders(){
         List<Order> orders= orderService.getAllOrders();
         return ResponseEntity.ok(orders);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getCartItemById(@PathVariable Long id){
+    public ResponseEntity<Order> getOrderById(@PathVariable Long id){
         Optional<Order> orderToGet= orderService.getOrderById(id);
         return orderToGet.map(ResponseEntity::ok)
                 .orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Order>   createCartItem(@RequestBody Order Order){
+    public ResponseEntity<Order> createOrder(@RequestBody Order Order){
         Order orderToSave= orderService.addOrder(Order);
         return ResponseEntity.status(HttpStatus.CREATED).body(orderToSave);
 
 
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
-        orderService.deleteOrder(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id){
+        orderService.deleteOrderById(id);
         return ResponseEntity.noContent().build();
     }
 }
