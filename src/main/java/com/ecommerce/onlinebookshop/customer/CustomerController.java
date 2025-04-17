@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 @RestController
 @RequestMapping("/api/customers")
@@ -25,20 +24,20 @@ public class CustomerController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<Customer> getCartItemById(@PathVariable Long id){
+    public ResponseEntity<Customer> getCustomerId(@PathVariable Long id){
         Optional<Customer> cartItem= customerService.getCustomerById(id);
         return cartItem.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Customer> createCartItem(@RequestBody Customer customer){
+    public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer){
         Customer customerToSave= customerService.addCustomer(customer);
     return     ResponseEntity.status(HttpStatus.CREATED).body(customerToSave);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id){
 
         customerService.deleteCustomer(id);
         return ResponseEntity.noContent().build();
