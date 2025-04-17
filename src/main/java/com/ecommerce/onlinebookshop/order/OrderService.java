@@ -1,7 +1,6 @@
 package com.ecommerce.onlinebookshop.order;
 
 import com.ecommerce.onlinebookshop.model.entity.Order;
-import com.ecommerce.onlinebookshop.order.OrderRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class OrderService {
         return orderRepository.save(order);
     }
 
-    public void deleteOrder(Long id){
+    public void deleteOrderById(Long id){
         orderRepository.deleteById(id);
     }
 }
