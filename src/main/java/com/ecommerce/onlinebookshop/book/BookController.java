@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/books")
-@PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
+//@PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
 public class BookController {
 
     private final BookService bookService;
@@ -40,7 +40,7 @@ public class BookController {
        return ResponseEntity.status(HttpStatus.CREATED).body(toBeSaved);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletebook(@PathVariable Long id){
         bookService.deleteBookById(id);
         return ResponseEntity.noContent().build();
