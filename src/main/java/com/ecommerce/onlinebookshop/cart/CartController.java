@@ -1,7 +1,8 @@
 package com.ecommerce.onlinebookshop.cart;
 
 import com.ecommerce.onlinebookshop.model.entity.Cart;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/carts")
-@PreAuthorize("CUSTOMER")
+
 public class CartController {
     private final CartService cartService;
 
@@ -19,23 +20,25 @@ public class CartController {
     }
 
     @GetMapping
-    public List<Cart> getAllCarts(){
-        return cartService.getAllCarts();
+    public ResponseEntity<List<Cart>> getAllCarts(){
+        return ResponseEntity.ok(cartService.getAllCarts());
     }
 
     @GetMapping("/{id}")
-    public Optional<Cart> getCartById(@PathVariable Long id){
-        return cartService.getCartById(id);
+    public ResponseEntity<Cart>   getCartById(@PathVariable Long id){
+        Optional<Cart> cart = cartService.getCartById(id);
+        return cart.map(ResponseEntity::ok).orElseGet(()->ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Cart createCart(@RequestBody Cart cart){
-        return cartService.addCart(cart);
+    public ResponseEntity<Cart> createCart(@RequestBody Cart cart){
+        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addCart(cart));
     }
 
-    @PreAuthorize("hasanyRole('ADMIN','EMPLOYEE')")
-    @DeleteMapping
-    public void deleteCart(@PathVariable Long id){
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteCart(@PathVariable Long id){
         cartService.deleteCart(id);
+        return ResponseEntity.noContent().build();
     }
 }
