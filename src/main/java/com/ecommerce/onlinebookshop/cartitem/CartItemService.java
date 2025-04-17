@@ -14,7 +14,7 @@ public class CartItemService {
         this.cartItemrepository = cartItemrepository;
     }
 
-    public List<CartItem> getCartItems(){
+    public List<CartItem> getAllCartItems(){
         return cartItemrepository.findAll();
     }
 

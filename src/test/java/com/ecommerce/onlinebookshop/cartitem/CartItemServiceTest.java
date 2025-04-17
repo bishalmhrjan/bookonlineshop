@@ -1,7 +1,5 @@
 package com.ecommerce.onlinebookshop.cartitem;
 
-import com.ecommerce.onlinebookshop.cart.CartRepository;
-import com.ecommerce.onlinebookshop.model.entity.Cart;
 import com.ecommerce.onlinebookshop.model.entity.CartItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,7 +40,7 @@ import static org.mockito.Mockito.*;
         cartItems.add(cartItem3);
 
         when(cartItemRepository.findAll()).thenReturn(cartItems);
-        List<CartItem> expectedCartItems = cartItemService.getCartItems();
+        List<CartItem> expectedCartItems = cartItemService.getAllCartItems();
 
         assertEquals(3,expectedCartItems.size());
         verify(cartItemRepository, times(1)).findAll();
@@ -84,7 +82,7 @@ import static org.mockito.Mockito.*;
 
 
         when(cartItemRepository.findAll()).thenReturn(cartItems);
-        List<CartItem> result = cartItemService.getCartItems();
+        List<CartItem> result = cartItemService.getAllCartItems();
 
          assertEquals(2,result.size());
 
@@ -92,7 +90,7 @@ import static org.mockito.Mockito.*;
         when(cartItemRepository.save(cartItem3)).thenReturn(cartItem3);
         cartItemService.addCartItem(cartItem3);
 
-        result = cartItemService.getCartItems();
+        result = cartItemService.getAllCartItems();
         assertEquals(3,result.size());
 
         verify(cartItemRepository,times(1)).save(cartItem3);
