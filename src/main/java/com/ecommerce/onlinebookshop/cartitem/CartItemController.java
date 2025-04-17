@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cartItems")
+@RequestMapping("/api/cartitems")
 public class CartItemController {
     private final CartItemService cartItemService;
 
@@ -21,7 +21,7 @@ public class CartItemController {
 
     @GetMapping
     public ResponseEntity<List<CartItem>> getAllCartItems(){
-        List<CartItem> cartItems= cartItemService.getCartItems();
+        List<CartItem> cartItems= cartItemService.getAllCartItems();
         return ResponseEntity.ok(cartItems);
     }
 
@@ -38,7 +38,7 @@ public class CartItemController {
         return ResponseEntity.status(HttpStatus.CREATED).body(toSaveCartItem);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCartItem(@PathVariable Long id){
         cartItemService.deleteCartItem(id);
         return ResponseEntity.noContent().build();
